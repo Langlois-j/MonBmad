@@ -240,4 +240,3 @@ Lis ces fichiers avant de commencer :
 ---
 
 *Maintenu par l'équipe BMAD — Mis à jour à chaque évolution des agents.*
-
