@@ -21,7 +21,13 @@ bmad-agents/
 ├── core/
 │   ├── orchestrator.md          ← Règles globales BMAD
 │   ├── memory-architecture.md   ← Gestion du contexte
-│   └── workflows.md             ← Quick / Standard / Enterprise
+│   ├── workflows.md             ← Quick / Standard / Enterprise
+│   └── agent-template.md        ← Template pour créer un nouvel agent
+├── projects/
+│   ├── README.md                ← Comment créer un projet
+│   └── _template/               ← Copier pour chaque nouveau projet
+│       ├── context/             ← Mémoire de chaque agent
+│       └── docs/                ← Livrables du projet
 └── README.md                    ← Ce fichier
 ```
 
@@ -60,6 +66,9 @@ bmad-agents/
 | `*simplify` | Propose une version MVP réduite du périmètre analysé |
 | `*memory-state` | Affiche l'état mémoire : inputs lus, décisions actives, ce qui sera perdu |
 | `*export-files` | Génère tous les fichiers .md de la session avec leur chemin exact |
+| `*save` | Génère les fichiers mémoire à jour (`project-context.md` + `[agent]-context.md`) prêts à pusher |
+| `*save-context` | Génère uniquement le bloc de reprise de session (version courte) |
+| `*reload` | Relit les fichiers GitHub de l'agent actif + contexte projet et confirme le chargement |
 
 ---
 
@@ -239,4 +248,30 @@ Lis ces fichiers avant de commencer :
 
 ---
 
-*Maintenu par l'équipe BMAD — Mis à jour à chaque évolution des agents.*
+
+---
+
+## 🛠️ Créer un nouvel agent
+
+Un template est disponible dans `core/agent-template.md` pour créer un agent sur mesure.
+
+**Demande à Claude :**
+> *"Crée-moi un agent [PRÉNOM] spécialisé en [DOMAINE] à partir du template BMAD"*
+
+Claude génère le fichier complet. Tu le pushes dans `agents/` et l'ajoutes aux instructions de ton Projet Claude.
+
+---
+
+## 💾 Système de mémoire — Commandes clés
+
+Chaque agent propose automatiquement une sauvegarde après chaque décision ou livrable :
+
+| Commande | Quand l'utiliser |
+|---|---|
+| `*save` | Après chaque session importante — génère les 2 fichiers contexte à pusher |
+| `*save-context` | Reprise rapide — génère juste le bloc de contexte minimal |
+| `*reload` | En début de session — force la relecture des fichiers GitHub |
+
+---
+
+*Maintenu par l'équipe BMAD — Mis à jour le 10/03/2026*
