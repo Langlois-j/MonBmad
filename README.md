@@ -1,14 +1,64 @@
 # 🧠 BMAD Agents — Bibliothèque Multi-Projets
 
-> **BMAD Method** — Breakthrough Method for Agile AI Driven Development  
+> **BMAD Method** — Breakthrough Method for Agile AI Driven Development
 > Bibliothèque centralisée des agents IA réutilisables sur tous les projets.
+> Dernière mise à jour : 11/03/2026
+
+---
+
+## 🚀 Prompt universel de démarrage
+
+> Copie-colle ce prompt dans n'importe quelle conversation Claude pour démarrer BMAD from scratch.
+
+```
+Tu es le système BMAD — Breakthrough Method for Agile AI Driven Development.
+
+Lis et applique ces fichiers dans l'ordre :
+1. https://raw.githubusercontent.com/Langlois-j/MonMbad/main/core/orchestrator.md
+2. L'agent demandé parmi :
+   https://raw.githubusercontent.com/Langlois-j/MonMbad/main/agents/[nom-agent].md
+
+Configuration du projet :
+BMAD_LOCAL_PATH=C:\Users\langl\Documents\GitHub\MonMbad
+BMAD_GITHUB_URL=https://raw.githubusercontent.com/Langlois-j/MonMbad/main
+WINDEV_VERSION=[numéro visible dans Aide > À propos de WinDev]
+
+Quand tu es prêt :
+1. Détecte ton environnement (Desktop+MCP ou Web)
+2. Demande la config sauvegarde (fréquence + blocage livrable)
+3. Active l'agent demandé et affiche son menu court
+```
+
+---
+
+## 🤖 Prompt pour créer un nouvel agent
+
+> Utilise ce prompt dans une conversation Claude pour générer un nouvel agent depuis le template.
+
+```
+Tu es le système BMAD. Lis ce template :
+https://raw.githubusercontent.com/Langlois-j/MonMbad/main/core/agent-template.md
+
+Crée un nouvel agent avec ces caractéristiques :
+- Prénom : [PRÉNOM]
+- Rôle : [RÔLE]
+- Domaine d'expertise : [DOMAINE]
+- Activation : *[commande] ou *[alias]
+- Commandes spécifiques : [liste des commandes métier]
+- Interactions avec les autres agents : [avec qui, dans quel sens]
+- Livrable principal : [chemin docs/]
+
+Respecte exactement la structure du template.
+Inclus : détection environnement, config sauvegarde, menu court, *history, *save, *save-config, *reload, *env, *help.
+À la fin, affiche le fichier complet prêt à sauvegarder dans agents/[prénom]-[rôle].md
+```
 
 ---
 
 ## 📁 Structure du repo
 
 ```
-bmad-agents/
+MonMbad/
 ├── agents/
 │   ├── mary-analyst.md          ← Business Analyst
 │   ├── john-pm.md               ← Product Manager
@@ -17,7 +67,14 @@ bmad-agents/
 │   ├── alex-dev.md              ← Développeur Senior
 │   ├── quinn-qa.md              ← QA Engineer
 │   ├── sophie-ux.md             ← UX Designer
-│   └── lena-dpo.md              ← DPO / Experte RGPD
+│   ├── lena-dpo.md              ← DPO / Experte RGPD
+│   ├── hugo-seo.md              ← Expert SEO Naturel
+│   ├── iris-seo-ia.md           ← Expert SEO IA & GEO
+│   ├── nova-ia.md               ← Experte IA, Prompts & Config
+│   ├── victor-migration.md      ← Expert Migration & Modernisation
+│   ├── maya-traduction.md       ← Experte Traduction Contextuelle
+│   ├── dylan-devops.md          ← Expert DevOps & CI/CD
+│   └── emma-doc.md              ← Experte Documentation Utilisateur
 ├── core/
 │   ├── orchestrator.md          ← Règles globales BMAD
 │   ├── memory-architecture.md   ← Gestion du contexte
@@ -37,241 +94,120 @@ bmad-agents/
 
 | Prénom | Rôle | Activation | Livrable principal |
 |--------|------|------------|-------------------|
-| **Mary** | Business Analyst | `*mary` ou `*analyst` | `docs/brainstorming-session-results.md` |
-| **John** | Product Manager | `*john` ou `*pm` | `docs/prd.md` + `docs/prd/` |
-| **Winston** | Architecte | `*winston` ou `*architect` | `docs/architecture.md` + `docs/architecture/` |
+| **Mary** | Business Analyst | `*mary` ou `*analyst` | `docs/brainstorming/` |
+| **John** | Product Manager | `*john` ou `*pm` | `docs/prd.md` |
+| **Winston** | Architecte | `*winston` ou `*architect` | `docs/architecture.md` |
 | **Bob** | Scrum Master | `*bob` ou `*scrum` | Planification sprints |
 | **Alex** | Développeur Senior | `*alex` ou `*dev` | `docs/stories/` |
 | **Quinn** | QA Engineer | `*quinn` ou `*qa` | `docs/qa/` |
 | **Sophie** | UX Designer | `*sophie` ou `*ux` | `docs/ux/` |
 | **Léna** | DPO / RGPD | `*léna` ou `*dpo` | `docs/rgpd/` |
+| **Hugo** | SEO Naturel | `*hugo` ou `*seo` | `docs/seo/` |
+| **Iris** | SEO IA & GEO | `*iris` ou `*geo` | `docs/seo/` |
+| **Nova** | IA, Prompts & Config | `*nova` ou `*ia` | `docs/ia/` |
+| **Victor** | Migration & Modernisation | `*victor` ou `*migration` | `docs/migration/` |
+| **Maya** | Traduction Contextuelle | `*maya` ou `*trad` | `docs/translations/` |
+| **Dylan** | DevOps & CI/CD | `*dylan` ou `*devops` | `docs/devops/` |
+| **Emma** | Documentation Utilisateur | `*emma` ou `*doc` | `docs/documentation/` |
+
+---
+
+## 🖥️ Modes d'utilisation
+
+### Claude Desktop + Windows-MCP ✅ (recommandé)
+Les agents lisent et écrivent **directement** sur ton disque local, silencieusement.
+```
+BMAD_LOCAL_PATH=C:\Users\langl\Documents\GitHub\MonMbad
+```
+
+### Claude.ai Web 🌐
+Les agents lisent via **URL GitHub raw**, écrivent via **téléchargement**.
+```
+BMAD_GITHUB_URL=https://raw.githubusercontent.com/Langlois-j/MonMbad/main
+```
+
+---
+
+## ⚙️ Variables de configuration
+
+| Variable | Description | Exemple |
+|---|---|---|
+| `BMAD_LOCAL_PATH` | Chemin local du repo | `C:\Users\langl\Documents\GitHub\MonMbad` |
+| `BMAD_GITHUB_URL` | URL GitHub raw | `https://raw.githubusercontent.com/Langlois-j/MonMbad/main` |
+| `WINDEV_VERSION` | Version PCSoft (Aide > À propos) | `3021011` |
+
+> Pour changer de PC ou de configuration : modifier uniquement ces lignes dans les instructions du projet.
+
+---
+
+## 💾 Système de sauvegarde
+
+| Comportement | Description |
+|---|---|
+| **Autosave périodique** | Toutes les N réponses (configurable, défaut 4) — silencieux |
+| **Blocage livrable critique** | `*save` requis avant de continuer (configurable) |
+| **`*save-config`** | Modifie fréquence et blocage en cours de session |
+| **Config au démarrage** | Demandée à chaque activation d'agent |
+
+---
+
+## 🤝 Handoff inter-agents
+
+Avant tout passage d'agent, l'agent sortant génère automatiquement un bloc :
+```
+## 🤝 Handoff [Agent sortant] → [Agent entrant]
+- Livrable produit, décisions clés, hypothèses, points d'attention, questions ouvertes
+```
+L'agent entrant confirme la lecture avant de démarrer.
 
 ---
 
 ## 📋 Commandes globales
 
-> Disponibles à tout moment, quel que soit l'agent actif.
-
 | Commande | Description |
-|----------|-------------|
-| `*help` | Affiche la liste complète des agents et commandes |
-| `*status` | Rappelle l'agent actif et les livrables déjà produits |
-| `*agent [prénom]` | Active un agent spécifique |
-| `*exit` | Libère l'agent actif, retour au mode Orchestrator |
-| `*yolo` | Mode autonome — l'agent produit sans interruption |
-| `*doc-out` | Affiche le document en cours dans son intégralité |
-| `*think-deep [question]` | Force un raisonnement approfondi sur un point |
-| `*challenge` | L'agent joue l'avocat du diable sur son propre livrable |
-| `*risk-analysis` | Analyse exhaustive des risques sur le livrable en cours |
-| `*simplify` | Propose une version MVP réduite du périmètre analysé |
-| `*memory-state` | Affiche l'état mémoire : inputs lus, décisions actives, ce qui sera perdu |
-| `*export-files` | Génère tous les fichiers .md de la session avec leur chemin exact |
-| `*save` | Génère les fichiers mémoire à jour (`project-context.md` + `[agent]-context.md`) prêts à pusher |
-| `*save-context` | Génère uniquement le bloc de reprise de session (version courte) |
-| `*reload` | Relit les fichiers GitHub de l'agent actif + contexte projet et confirme le chargement |
-
----
-
-## 🗂️ Commandes par agent
-
-### 📊 Mary — Business Analyst
-| Commande | Description |
-|----------|-------------|
-| `*create-project-brief` | Résumé exécutif du projet (1 page décideur) |
-| `*brainstorm [sujet]` | Session structurée (Role Playing + Five Whys + Analogies) |
-| `*stakeholder-map` | Cartographie complète des parties prenantes |
-| `*constraint-analysis` | Analyse exhaustive des contraintes |
-| `*assumption-log` | Log des hypothèses avec niveau de confiance |
-| `*risk-radar` | Matrice risques (probabilité × impact) |
-| `*elicit` | Élicitation avancée des besoins non exprimés |
-| `*research-prompt [sujet]` | Prompt de recherche approfondie |
-
----
-
-### 📝 John — Product Manager
-| Commande | Description |
-|----------|-------------|
-| `*create-prd` | PRD complet avec epics, stories, ACs |
-| `*moscow-analysis` | Analyse MoSCoW du périmètre |
-| `*create-epics` | Découpage en epics avec dependency graph |
-| `*create-stories [epic-id]` | User stories détaillées pour un epic |
-| `*create-all-stories` | Toutes les stories de tous les epics |
-| `*edge-cases [feature]` | Catalogue des cas limites d'une feature |
-| `*shard-prd` | Éclate le PRD en fichiers séparés |
-| `*checklist-review` | Validation qualité du PRD |
-
----
-
-### 🏗️ Winston — Architecte
-| Commande | Description |
-|----------|-------------|
-| `*create-architecture` | Document d'architecture complet |
-| `*adr [décision]` | Architecture Decision Record |
-| `*threat-model` | Analyse de sécurité STRIDE |
-| `*design-data-models` | Modèles de données avec contraintes d'intégrité |
-| `*design-api` | Spécification API (REST/GraphQL) |
-| `*failure-analysis` | Analyse des modes de défaillance |
-| `*shard-architecture` | Éclate l'architecture en fichiers |
-| `*checklist-review` | Validation qualité de l'architecture |
-
----
-
-### 🔄 Bob — Scrum Master
-| Commande | Description |
-|----------|-------------|
-| `*sprint-planning [sprint-num]` | Planification d'un sprint |
-| `*next-story` | Identifie la prochaine story à implémenter |
-| `*story-status` | Tableau de bord du sprint en cours |
-| `*update-story [id] [statut]` | Met à jour le statut d'une story |
-| `*ready-check [id]` | Vérifie la Definition of Ready |
-| `*velocity-report` | Rapport de vélocité et projection |
-
----
-
-### 💻 Alex — Développeur Senior
-| Commande | Description |
-|----------|-------------|
-| `*dev-story [id]` | Implémente une story complète |
-| `*impl-plan [id]` | Plan d'implémentation détaillé avant de coder |
-| `*code-review` | Revue de code de la story en cours |
-| `*debug [description]` | Analyse et résolution d'un problème |
-| `*refactor [composant]` | Refactorisation avec justification |
-| `*test-coverage [id]` | Rapport de couverture de tests |
-| `*security-check` | Revue de sécurité du code produit |
-
----
-
-### 🧪 Quinn — QA Engineer
-| Commande | Description |
-|----------|-------------|
-| `*create-qa-gate [story-id]` | Quality Gate YAML complète |
-| `*validate-story [story-id]` | Validation complète d'une story |
-| `*test-plan [epic-id]` | Plan de tests complet d'un epic |
-| `*automate [story-id]` | Génère les tests automatisés |
-| `*regression-check` | Identifie les régressions potentielles |
-| `*bug-report [description]` | Rapport de bug structuré |
-| `*non-functional-check` | Tests de performance, accessibilité, sécurité |
-
----
-
-### 🎨 Sophie — UX Designer
-| Commande | Description |
-|----------|-------------|
-| `*user-journey [persona]` | Parcours utilisateur complet |
-| `*wireframe [écran]` | Wireframe ASCII d'un écran |
-| `*ux-audit [feature]` | Audit UX d'une feature existante |
-| `*design-system` | Guide des composants UI |
-| `*accessibility-check` | Analyse des exigences d'accessibilité |
-
----
-
-### 🔏 Léna — DPO / Experte RGPD
-| Commande | Description |
-|----------|-------------|
-| `*data-mapping` | Cartographie complète des traitements de données |
-| `*create-ropa` | Registre des activités de traitement (ROPA) |
-| `*pia [feature]` | Analyse d'impact (AIPD/PIA) sur une feature |
-| `*legal-basis [traitement]` | Analyse de la base légale applicable |
-| `*privacy-by-design [composant]` | Audit Privacy by Design d'un composant |
-| `*retention-policy` | Politique de conservation des données |
-| `*consent-flow [feature]` | Conception du flux de consentement |
-| `*breach-procedure` | Procédure de gestion des violations de données |
-| `*dpia-checklist` | Checklist AIPD complète |
-| `*third-party-audit [service]` | Audit RGPD d'un sous-traitant ou service tiers |
-
----
-
-## 🔄 Workflows disponibles
-
-### Quick Flow
-```
-Alex (*dev-story) → Quinn (*validate-story) → Done
-```
-
-### BMad Method Standard
-```
-Mary (*brainstorm) → John (*create-prd) → Winston (*create-architecture)
-  → John (*create-all-stories) → Bob (*sprint-planning)
-    → [par story] Alex (*dev-story) → Quinn (*validate-story)
-```
-
-### Enterprise Flow
-```
-Mary (*brainstorm + *stakeholder-map + *risk-radar + *constraint-analysis)
-  → Léna (*data-mapping + *pia)
-    → Sophie (*user-journey × personas)
-      → John (*create-prd + *moscow-analysis + *edge-cases)
-        → Winston (*create-architecture + *adr + *threat-model + *failure-analysis)
-          → Léna (*privacy-by-design)
-            → John (*create-all-stories avec sizing)
-              → Bob (*sprint-planning avec dependency graph)
-                → [par story]
-                    Alex (*impl-plan → *dev-story → *test-coverage)
-                      → Quinn (*create-qa-gate → *validate-story → *non-functional-check)
-```
-
----
-
-## 💾 Format de fin de livrable (obligatoire)
-
-Chaque agent termine son livrable avec ces deux blocs :
-
-```markdown
-> 🗂️ Mémoire [Nom de l'Agent]
-> - **Lu cette session :** [liste des documents/inputs utilisés]
-> - **Décisions clés :** [2-3 décisions critiques à ne pas perdre]
-> - **Sera perdu si nouvelle session :** [ce qu'il faudra recoller]
-
-> 💾 Fichiers générés
-> - `docs/[chemin/fichier.md]` → [description courte]
-> ⬆️ **Action requise :** Copier ces fichiers dans le repo GitHub avant de fermer la session
-```
-
----
-
-## 🔗 Utilisation dans un Projet Claude
-
-Colle ces liens dans les instructions de ton Projet Claude :
-
-```
-Lis ces fichiers avant de commencer :
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/core/orchestrator.md
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/agents/mary-analyst.md
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/agents/john-pm.md
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/agents/winston-architect.md
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/agents/bob-scrum.md
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/agents/alex-dev.md
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/agents/quinn-qa.md
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/agents/sophie-ux.md
-- https://raw.githubusercontent.com/[TON-USERNAME]/bmad-agents/main/agents/lena-dpo.md
-```
-
----
-
-
----
-
-## 🛠️ Créer un nouvel agent
-
-Un template est disponible dans `core/agent-template.md` pour créer un agent sur mesure.
-
-**Demande à Claude :**
-> *"Crée-moi un agent [PRÉNOM] spécialisé en [DOMAINE] à partir du template BMAD"*
-
-Claude génère le fichier complet. Tu le pushes dans `agents/` et l'ajoutes aux instructions de ton Projet Claude.
-
----
-
-## 💾 Système de mémoire — Commandes clés
-
-Chaque agent propose automatiquement une sauvegarde après chaque décision ou livrable :
-
-| Commande | Quand l'utiliser |
 |---|---|
-| `*save` | Après chaque session importante — génère les 2 fichiers contexte à pusher |
-| `*save-context` | Reprise rapide — génère juste le bloc de contexte minimal |
-| `*reload` | En début de session — force la relecture des fichiers GitHub |
+| `*help` | Liste complète agents et commandes |
+| `*status` | Agent actif + livrables produits |
+| `*history` | Toutes les décisions prises dans la session |
+| `*agent [prénom]` | Active un agent |
+| `*exit` | Libère l'agent, retour Orchestrator |
+| `*yolo` | Mode autonome sans interruption |
+| `*doc-out` | Document en cours complet |
+| `*think-deep [question]` | Raisonnement approfondi |
+| `*challenge` | Avocat du diable sur le livrable |
+| `*risk-analysis` | Analyse exhaustive des risques |
+| `*simplify` | Version MVP réduite |
+| `*memory-state` | État mémoire complet |
+| `*export-files` | Tous les fichiers .md avec chemins |
+| `*save` | Sauvegarde (auto MCP / téléchargement Web) |
+| `*save-context` | Bloc reprise de session court |
+| `*save-config` | Modifie config sauvegarde (fréquence, blocage) |
+| `*reload` | Relit fichiers agent + contexte |
+| `*env` | Affiche environnement + chemins config |
+| `*handoff [agent]` | Génère le bloc de passation vers un agent |
 
 ---
 
-*Maintenu par l'équipe BMAD — Mis à jour le 10/03/2026*
+## 🛠️ Installation Windows-MCP
+
+### Prérequis
+1. **Claude Desktop** — `claude.ai/download`
+2. **Python 3.13+** — `python.org/downloads` (cocher "Add Python to PATH")
+3. **UV Package Manager** :
+   ```powershell
+   powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+   ```
+
+### Activation
+Claude Desktop → **Paramètres → Extensions → Windows-MCP** → Mode `local` → Enregistrer
+
+### Autorisations recommandées
+| Outil | Permission |
+|---|---|
+| FileSystem, Clipboard, Snapshot, Wait, Scrape, Notification | ✅ Toujours |
+| PowerShell, App, Click, Type, Scroll | ⚠️ Approbation |
+| Registry | ❌ Désactivé |
+
+---
+
+*Maintenu par l'équipe BMAD — Mis à jour le 11/03/2026*
